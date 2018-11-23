@@ -26,7 +26,7 @@ export function getPokemons() {
       type: GET_POKEMONS_REQUEST
     })
 
-    return fetch(`https://pokeapi.co/api/v2/pokemon/?limit=784`)
+    return fetch(`https://pokeapi.co/api/v2/pokemon/?limit=50`)
       .then(response => {
         if (response.ok) {
           return response.json()
