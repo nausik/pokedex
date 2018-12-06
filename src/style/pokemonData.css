@@ -3,6 +3,14 @@
   width: 100%;
 }
 
+.pokemon-data .pokemon-data__back {
+  margin-top: 25px;
+}
+
+.pokemon-data .pokemon-data__back a {
+  color: #fff;
+}
+
 .pokemon-data-stats {
   text-align: left;
 }

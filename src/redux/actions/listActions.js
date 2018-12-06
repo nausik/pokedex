@@ -11,7 +11,7 @@ import { getPokemonsList } from '../../http/http'
 function setPokemons(data) {
   const pokemons = data.results.map(pokemon => {
     let { url } = pokemon
-    pokemon.id = url.substring(34, url.length - 1)
+    pokemon.id = parseInt(url.substring(34, url.length - 1), 10)
 
     return pokemon
   })

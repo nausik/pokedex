@@ -17,6 +17,15 @@
   background-color: transparent;
   background-position: center center;
   background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.pokemon .pokemon__favourite {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  z-index: 110;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .pokemon_big,

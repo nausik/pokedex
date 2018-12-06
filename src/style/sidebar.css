@@ -5,7 +5,7 @@
   top: 0;
   height: 100%;
   width: 300px;
-  background-color: rgba(150, 150, 150, 0.5);
+  background-color: rgba(150, 150, 150, 0.8);
 
   animation: FADE-IN 1s;
 }
@@ -17,6 +17,16 @@
   cursor: pointer;
 }
 
+.sidebar .sidebar-favouritePokemons__pokemons {
+  position: absolute;
+  transform: translate(-50%);
+  left: 50%;
+}
+
+.sidebar .sidebar-favouritePokemons__pokemon {
+  margin-bottom: 10px;
+}
+
 .open-sidebar {
   position: fixed;
   left: 25px;
@@ -25,6 +35,10 @@
   cursor: pointer;
 
   animation: FADE-IN 1s;
+}
+
+.sidebar-favourites .sidebar-favourites__title {
+  margin-left: 20px;
 }
 
 .fade-out {

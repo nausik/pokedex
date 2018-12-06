@@ -5,6 +5,7 @@ import PokemonData from '../components/pokemonData'
 import NoData from '../components/noData'
 
 import * as pokemonActions from '../redux/actions/pokemonActions'
+import * as favouritePokemonActions from '../redux/actions/favouritePokemonsActions'
 
 class PokemonPage extends Component {
   componentDidMount() {
@@ -15,6 +16,16 @@ class PokemonPage extends Component {
     if (params.location.pathname !== this.props.location.pathname) {
       this.props.getPokemon(params.match.params.id)
     }
+  }
+
+  toggleFavourite = pokemon => {
+    this.props.toggleFavouritePokemon(pokemon)
+  }
+
+  isFavourite = () => {
+    return this.props.favouritePokemons.some(
+      pokemon => pokemon.id === this.props.pokemonData.pokemon.id
+    )
   }
 
   render() {
@@ -31,6 +42,8 @@ class PokemonPage extends Component {
               <PokemonData
                 pokemonData={pokemonData.pokemon}
                 evolutionChainData={pokemonData.evolutionChain}
+                isFavourite={this.isFavourite()}
+                toggleFavourite={this.toggleFavourite}
               />
             ) : (
               <NoData />
@@ -43,17 +56,20 @@ class PokemonPage extends Component {
 }
 
 function mapStateToProps(state) {
-  const { pokemonData, isFetched, error } = state.pokemon
+  const { pokemonData, isFetched, error } = state.pokemon,
+    { favouritePokemons } = state.favouritePokemons
 
   return {
     pokemonData,
     isFetched,
-    error
+    error,
+    favouritePokemons
   }
 }
 
 const mapDispatchToProps = {
-  getPokemon: pokemonActions.getPokemon
+  getPokemon: pokemonActions.getPokemon,
+  toggleFavouritePokemon: favouritePokemonActions.toggleFavouritePokemon
 }
 
 export default connect(

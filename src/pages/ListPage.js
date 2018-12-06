@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
-import * as listActions from '../redux/actions/listActions'
-
 import React, { Component } from 'react'
+
 import Pokemon from '../components/pokemon'
 import Search from '../components/search'
+
+import * as listActions from '../redux/actions/listActions'
+import * as favouritePokemonActions from '../redux/actions/favouritePokemonsActions'
 
 class ListPage extends Component {
   componentDidMount() {
@@ -14,13 +16,28 @@ class ListPage extends Component {
     this.props.filterPokemons(event.currentTarget.value)
   }
 
+  toggleFavourite = pokemon => {
+    this.props.toggleFavouritePokemon(pokemon)
+  }
+
+  isFavourite = pokemonParam => {
+    return this.props.favouritePokemons.some(
+      pokemon => pokemon.id === pokemonParam.id
+    )
+  }
+
   render() {
     let { displayedPokemons, isFetched, error } = this.props
 
     let pokemons = displayedPokemons.map(pokemon => {
       return (
         <li className="pokemons__item" key={pokemon.id}>
-          <Pokemon pokemon={pokemon} />
+          <Pokemon
+            pokemon={pokemon}
+            hasFavourite={true}
+            isFavourite={this.isFavourite(pokemon)}
+            toggleFavourite={this.toggleFavourite}
+          />
         </li>
       )
     })
@@ -42,18 +59,21 @@ class ListPage extends Component {
 }
 
 function mapStateToProps(state) {
-  const { displayedPokemons, isFetched, error } = state.list
+  const { displayedPokemons, isFetched, error } = state.list,
+    { favouritePokemons } = state.favouritePokemons
 
   return {
     displayedPokemons,
     isFetched,
-    error
+    error,
+    favouritePokemons
   }
 }
 
 const mapDispatchToProps = {
   getPokemons: listActions.getPokemons,
-  filterPokemons: listActions.filterPokemons
+  filterPokemons: listActions.filterPokemons,
+  toggleFavouritePokemon: favouritePokemonActions.toggleFavouritePokemon
 }
 
 export default connect(

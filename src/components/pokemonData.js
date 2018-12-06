@@ -1,15 +1,20 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import Pokemon from './pokemon'
 import EvolutionChain from './evolutionChain'
-import NoData from './noData'
 
 import '../style/pokemonData.css'
 
 class PokemonData extends PureComponent {
   render() {
-    const { pokemonData, evolutionChainData } = this.props
+    const {
+      pokemonData,
+      evolutionChainData,
+      toggleFavourite,
+      isFavourite
+    } = this.props
 
     const pokemonStatsJsx = pokemonData.stats.map(stat => {
       return (
@@ -28,7 +33,12 @@ class PokemonData extends PureComponent {
       <div className="pokemon-data">
         <div className="row row_center">
           <div className="pokemon-data__pokemon">
-            <Pokemon pokemon={pokemonData} />
+            <Pokemon
+              pokemon={pokemonData}
+              hasFavourite={true}
+              toggleFavourite={toggleFavourite}
+              isFavourite={isFavourite}
+            />
           </div>
           <div className="pokemon-data__stats">
             <ul className="pokemon-data-stats">{pokemonStatsJsx}</ul>
@@ -39,8 +49,11 @@ class PokemonData extends PureComponent {
           {evolutionChainData ? (
             <EvolutionChain evolutionChainData={evolutionChainData} />
           ) : (
-            <NoData />
+            ''
           )}
+        </div>
+        <div className="pokemon-data__back">
+          <Link to="/">Back to Pokemon List</Link>
         </div>
       </div>
     )
@@ -49,7 +62,9 @@ class PokemonData extends PureComponent {
 
 PokemonData.propTypes = {
   pokemonData: PropTypes.object.isRequired,
-  evolutionChainData: PropTypes.array.isRequired
+  evolutionChainData: PropTypes.array.isRequired,
+  isFavourite: PropTypes.bool.isRequired,
+  toggleFavourite: PropTypes.func.isRequired
 }
 
 export default PokemonData

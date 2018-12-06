@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { TiThMenu } from 'react-icons/ti'
 
 import SideBarComponent from '../components/sidebar'
-
-import * as favritePokemonsActions from '../redux/actions/favoritePokemonsActions'
+import * as favouritePokemonActions from '../redux/actions/favouritePokemonsActions'
 
 import '../style/sidebar.css'
 
@@ -35,14 +34,22 @@ class SideBar extends Component {
     }, FADE_OUT_LENGTH)
   }
 
+  toggleFavourite = pokemon => {
+    this.props.toggleFavouritePokemon(pokemon)
+  }
+
   render() {
-    const { isOpen, fadeOut } = this.state
+    const { favouritePokemons } = this.props,
+      { isOpen, fadeOut } = this.state
+
     return (
       <div>
         {isOpen ? (
           <SideBarComponent
             close={this.toggleSideBar}
             className={fadeOut ? 'fade-out' : ''}
+            favouritePokemons={favouritePokemons}
+            toggleFavourite={this.toggleFavourite}
           />
         ) : (
           <div className="open-sidebar" onClick={this.toggleSideBar}>
@@ -56,10 +63,16 @@ class SideBar extends Component {
 }
 
 function mapStateToProps(state) {
-  return {}
+  const { favouritePokemons } = state.favouritePokemons
+
+  return {
+    favouritePokemons
+  }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  toggleFavouritePokemon: favouritePokemonActions.toggleFavouritePokemon
+}
 
 export default connect(
   mapStateToProps,
