@@ -19,6 +19,7 @@ export default function(state = initialState, action) {
       let newFavouritePokemons = state.favouritePokemons.filter(
         pokemon => pokemon.id !== action.payload.id
       )
+
       newFavouritePokemons =
         newFavouritePokemons.length === state.favouritePokemons.length
           ? [...newFavouritePokemons, action.payload]

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+
 import list from './listReducer'
 import pokemon from './pokemonReducer'
 import favouritePokemons from './favouritePokemonsReducer'
