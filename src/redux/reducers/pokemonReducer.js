@@ -1,49 +1,41 @@
 import {
-  GET_POKEMONS_REQUEST,
-  GET_POKEMONS_SUCCESS,
-  GET_POKEMONS_FAIL,
-  SET_POKEMONS,
-  FILTER_POKEMONS
+  GET_POKEMON_REQUEST,
+  GET_POKEMON_FAIL,
+  GET_POKEMON_SUCCESS,
+  SET_POKEMON
 } from '../constants/listConstants'
 
 const initialState = {
   isFetched: false,
   error: null,
-  pokemons: [],
-  displayedPokemons: []
+  pokemonData: []
 }
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_POKEMONS_REQUEST:
+    case GET_POKEMON_REQUEST:
       return {
         ...state,
         isFetched: true
       }
 
-    case GET_POKEMONS_SUCCESS:
+    case GET_POKEMON_SUCCESS:
       return {
         ...state,
         isFetched: false
       }
 
-    case GET_POKEMONS_FAIL:
+    case GET_POKEMON_FAIL:
       return {
         ...state,
         isFetched: false,
         error: action.payload
       }
 
-    case SET_POKEMONS:
+    case SET_POKEMON:
       return {
         ...state,
-        pokemons: action.payload
-      }
-
-    case FILTER_POKEMONS:
-      return {
-        ...state,
-        displayedPokemons: action.payload
+        pokemonData: action.payload
       }
 
     default:

@@ -1,0 +1,50 @@
+.sidebar {
+  position: fixed;
+  z-index: 200;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 300px;
+  background-color: rgba(150, 150, 150, 0.5);
+
+  animation: FADE-IN 1s;
+}
+
+.sidebar .sidebar__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.open-sidebar {
+  position: fixed;
+  left: 25px;
+  top: 25px;
+  z-index: 200;
+  cursor: pointer;
+
+  animation: FADE-IN 1s;
+}
+
+.fade-out {
+  animation: FADE-OUT 0.5s;
+}
+
+@keyframes FADE-IN {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes FADE-OUT {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

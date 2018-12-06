@@ -1,0 +1,64 @@
+.pokemon {
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.pokemon__sprite {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  border: none;
+  background-color: transparent;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.pokemon_big,
+.pokemon_big .pokemon__sprite {
+  width: 140px;
+  height: 140px;
+}
+
+.pokemon_small,
+.pokemon_small .pokemon__sprite {
+  width: 70px;
+  height: 70px;
+}
+
+.pokemon__name {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+@media (min-width: 992px) {
+  .pokemon_big,
+  .pokemon_big .pokemon__sprite {
+    width: 160px;
+    height: 160px;
+  }
+
+  .pokemon_small,
+  .pokemon_small .pokemon__sprite {
+    width: 80px;
+    height: 80px;
+  }
+}

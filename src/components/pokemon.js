@@ -1,11 +1,24 @@
 import React, { PureComponent } from 'react'
+import { withRouter } from 'react-router'
+import PropTypes from 'prop-types'
+
+import '../style/pokemon.css'
 
 class Pokemon extends PureComponent {
+  openPokemonPage = id => {
+    return () => {
+      this.props.history.push(`/pokemon/${id}`)
+    }
+  }
+
   render() {
-    const { pokemon } = this.props
+    const { pokemon, type } = this.props
 
     return (
-      <div className="pokemon">
+      <div
+        className={'pokemon pokemon_' + type}
+        onClick={this.openPokemonPage(pokemon.id)}
+      >
         <button
           type="button"
           className="pokemon__sprite"
@@ -21,4 +34,13 @@ class Pokemon extends PureComponent {
   }
 }
 
-export default Pokemon
+Pokemon.defaultProps = {
+  type: 'big'
+}
+
+Pokemon.propTypes = {
+  pokemon: PropTypes.object.isRequired,
+  type: PropTypes.oneOf(['big', 'small']).isRequired
+}
+
+export default withRouter(Pokemon)

@@ -6,6 +6,8 @@ import {
   FILTER_POKEMONS
 } from '../constants/listConstants'
 
+import { getPokemonsList } from '../../http/http'
+
 function setPokemons(data) {
   const pokemons = data.results.map(pokemon => {
     let { url } = pokemon
@@ -26,14 +28,7 @@ export function getPokemons() {
       type: GET_POKEMONS_REQUEST
     })
 
-    return fetch(`https://pokeapi.co/api/v2/pokemon/?limit=784`)
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-
-        throw new Error(`${response.status}: ${response.statusText}`)
-      })
+    return getPokemonsList()
       .then(data => {
         dispatch({
           type: GET_POKEMONS_SUCCESS

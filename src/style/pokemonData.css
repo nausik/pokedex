@@ -1,0 +1,32 @@
+.pokemon-data {
+  margin: 50px 0;
+  width: 100%;
+}
+
+.pokemon-data-stats {
+  text-align: left;
+}
+
+.pokemon-data-stats .pokemon-data-stats__stat_hp {
+  color: #6b8e23;
+}
+
+.pokemon-data-stats .pokemon-data-stats__stat_speed {
+  color: #b7fbff;
+}
+
+.pokemon-data-stats .pokemon-data-stats__stat_special-defense {
+  color: #00ced1;
+}
+
+.pokemon-data-stats .pokemon-data-stats__stat_special-attack {
+  color: #c71585;
+}
+
+.pokemon-data-stats .pokemon-data-stats__stat_defense {
+  color: #f4a460;
+}
+
+.pokemon-data-stats .pokemon-data-stats__stat_attack {
+  color: #cd5c5c;
+}
